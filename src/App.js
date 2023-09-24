@@ -1,10 +1,10 @@
 import './App.css';
-import BgChanger from './bgChanger';
+import PasswordGenerator from './passwordGenerator';
 
 function App() {
   return (
     <div className="App">
-    <BgChanger/>
+    <PasswordGenerator/>
     </div>
   );
 }
