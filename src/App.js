@@ -1,11 +1,10 @@
 import './App.css';
-import MyForm from './formState/MyForm';
+import BgChanger from './bgChanger';
 
 function App() {
   return (
     <div className="App">
-     <MyForm/>
-
+    <BgChanger/>
     </div>
   );
 }
