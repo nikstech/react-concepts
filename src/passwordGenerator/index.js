@@ -23,14 +23,19 @@ function PasswordGenerator() {
   }, [length, numAllow, charAllow])
 
   const passRef = useRef()
+
   const handleLength = (e) => {
     setLength(e.target.value)
   }
-  const handleNum = (e) =>{
-    setNumAllow(e.target.value)
-  }
-  const handleChar = (e) =>{
-    setCharAllow(e.target.value)
+  // const handleNum = (e) => {
+  //   setNumAllow(e.target.value)
+  // }
+  // const handleChar = (e) => {
+  //   setCharAllow(e.target.value)
+  // }
+  const handleCopyToClipboard = () => {
+    window.navigator.clipboard.writeText(password)
+    passRef.current.select()
   }
   useEffect(() => {
     passwordGenerate()
@@ -46,11 +51,10 @@ function PasswordGenerator() {
             value={password}
             className="outline-none w-full py-1 px-3"
             placeholder="Password"
+            ref={passRef}
             readOnly
           />
-          <button
-            className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
-          >copy</button>
+          <button className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0' onClick={handleCopyToClipboard}>copy</button>
 
         </div>
         <div className='flex text-sm gap-x-2'>
@@ -69,7 +73,7 @@ function PasswordGenerator() {
             <input
               type="checkbox"
               defaultChecked=''
-              onChange={handleNum}
+              onChange={()=>setNumAllow((prev)=>!prev)}
               id="numberInput" />
             <label htmlFor="numberInput">Numbers</label>
           </div>
@@ -77,7 +81,7 @@ function PasswordGenerator() {
             <input
               type="checkbox"
               defaultChecked=''
-              onChange={handleChar}
+              onChange={()=>setCharAllow((prev)=>!prev)}
               id="characterInput" />
             <label htmlFor="characterInput">Characters</label>
           </div>
